@@ -104,7 +104,7 @@ Los clientes no deberían verse obligados a depender de los métodos que no usan
 
 ##### ¿Cómo detectar si estamos violando este principio?
 
-Al implementar una interfaz ves que uno o varios de los métodos no tienen sentido y nos hace falta dejarlos vacíos o lanzar excepciones. 
+Al implementar una interfaz ves que uno o varios de los métodos no tienen sentido y hace falta dejarlos vacíos o lanzar excepciones. 
 
 ##### Consideraciones del principio
 
