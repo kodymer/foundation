@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineStore.Order
+namespace OnlineStore
 {
     public class Order
     {
         
         private ILogger Logger { get; }
+
         private List<OrderDetail> Details { get; } 
+
         private string Number { get; set; }
 
         public Order(string number)
@@ -27,8 +29,6 @@ namespace OnlineStore.Order
 
             Logger.Write(string.Concat($"Order #{Number} - Add Item: ", orderDetail.ToString()));
 
-        }
-
-        
+        }        
     }
 }

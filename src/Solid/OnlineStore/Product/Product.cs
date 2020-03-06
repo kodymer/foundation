@@ -4,12 +4,8 @@ using System.Text;
 
 namespace OnlineStore
 {
-    public class Product
-    {
-        public static Product Book = new Product("000001", "50 Sombras de Gray", "Libro para adultos");
-        public static Product Mobile = new Product("000002", "Sansumg Galaxy Note 10+", "Teléfono movil de ultima generación");
-        public static Product Mouse = new Product("000003", "50 Sombras de Gray", "Periferico para PC");
-
+    public abstract class Product
+    { 
         public string Code { get; set; }
 
         public string Name { get; set; }
@@ -26,10 +22,7 @@ namespace OnlineStore
             Description = description;
         }
 
-        public static Product Create(string code, string name, string description)
-        {
-            return new Product(code, name, description);
-        }
+        public abstract Product Create(string code, string name, string description);
 
         public override string ToString()
         {
