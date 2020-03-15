@@ -1,4 +1,4 @@
-﻿namespace OnlineStore
+﻿namespace Contoso.OnlineStore.Business
 {
     public class OrderDetail
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineStore
+namespace Contoso.OnlineStore.Business
 {
     public abstract class Product
     { 

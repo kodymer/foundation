@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OnlineStore
+namespace Contoso.OnlineStore
 {
     class Program
     {

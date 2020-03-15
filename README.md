@@ -35,13 +35,13 @@ La herencia es probablemente la forma más obvia y facil de reusar código entre
 
 Hay una alternativa a la herencia llamada **composición**. Mientras que la herencia representa la relación “es una” entre clases (un automóvil es un transporte), la composición representa la relación “tiene un” (un automóvil tiene un motor).
 
-## No te repitas (DRY)
+## Don’t repeat yourself (DRY)
 
 Según este principio toda "pieza de información" nunca debería ser duplicada debido a que la duplicación incrementa la dificultad en los cambios y evolución posterior, puede perjudicar la claridad y crear un espacio para posibles inconsistencias.
 
 Cuando el principio DRY se aplica de forma eficiente los cambios en cualquier parte del proceso requieren cambios en un único lugar. Por el contrario, si algunas partes del proceso están repetidas por varios sitios, los cambios pueden provocar fallos con mayor facilidad si todos los sitios en los que aparece no se encuentran sincronizados.
 
-## Mantenlo simple y estupido (KISS)
+## Keep it simple, stupid! (KISS)
 
 El principio KISS establece que la mayoría de sistemas funcionan mejor si se mantienen simples que si se hacen complejos; por ello, la simplicidad debe ser mantenida como un objetivo clave del diseño, y cualquier complejidad innecesaria debe ser evitada.
 

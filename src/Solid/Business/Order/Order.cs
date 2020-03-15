@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Contoso.OnlineStore.Logging;
 
-namespace OnlineStore
+namespace Contoso.OnlineStore.Business
 {
     public class Order
     {

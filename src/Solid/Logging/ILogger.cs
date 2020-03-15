@@ -1,4 +1,4 @@
-﻿2namespace OnlineStore
+﻿2namespace Contoso.OnlineStore.Logging
 {
     public interface ILogger
     {

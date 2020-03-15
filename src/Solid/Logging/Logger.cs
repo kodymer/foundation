@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineStore
+namespace Contoso.OnlineStore.Logging
 {
     public class Logger : ILogger
     {
