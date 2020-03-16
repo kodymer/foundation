@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Contoso.OnlineStore.Business
 {
-    public abstract class Product
+    public class Product
     { 
         public string Code { get; set; }
 
@@ -21,8 +21,6 @@ namespace Contoso.OnlineStore.Business
             Name = name;
             Description = description;
         }
-
-        public abstract Product Create(string code, string name, string description);
 
         public override string ToString()
         {

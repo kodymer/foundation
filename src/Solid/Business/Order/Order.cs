@@ -10,25 +10,25 @@ namespace Contoso.OnlineStore.Business
         
         private ILogger Logger { get; }
 
-        private List<OrderDetail> Details { get; } 
-
         private string Number { get; set; }
+
+        private readonly List<OrderDetail> _details;
 
         public Order(string number)
         {
             Check.NotNull(number, nameof(number));
 
             Logger = NullLogger.Instance;
-            Details = new List<OrderDetail>();
+            _details = new List<OrderDetail>();
         }
 
-        public virtual void Add(string description, int quantity, decimal price)
+        public virtual void AddDetail(string description, int quantity, decimal price)
         {
             var orderDetail = OrderDetail.Create(description, quantity, price);
 
-            Details.Add(orderDetail);
+            _details.Add(orderDetail);
 
-            Logger.Write(string.Concat($"Order #{Number} - Add Item: ", orderDetail.ToString()));
+            Logger.Write(string.Concat($"Order #{Number} - Detail: ", orderDetail.ToString()));
 
         }        
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Contoso.OnlineStore.Business;
 
 namespace Contoso.OnlineStore
 {
@@ -7,14 +8,15 @@ namespace Contoso.OnlineStore
         static void Main(string[] args)
         {
 
-            var order = new Order("123456");
-            Product product = new BookProduct(
+
+            var product = ProductFactory.CreateBook(
                 "000001", 
                 "50 Sombras de Gray", 
                 "Libro para adultos", 
                 "823474", "Pedro Moreno");
 
-            order.Add(product.ToString(), 1, 10.60M);
+            var order = new Order("123456");
+            order.AddDetail(product.ToString(), 1, 10.60M);
 
         }
     }

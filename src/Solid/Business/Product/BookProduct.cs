@@ -20,19 +20,9 @@ namespace Contoso.OnlineStore.Business
             Author = author;
         }
 
-        public BookProduct(string code, string name, string description)
-            : base(code, name, description)
-        {
-        }
-
-        public override Product Create(string code, string name, string description)
-        {
-            return new BookProduct(code, name, description);
-        }
-
         public override string ToString()
         {
-            return $"{ base.ToString() } Isbn: {Isbn}, Autor: {Author}";
+            return $"{ base.ToString() } (Isbn: {Isbn} - Autor: {Author})";
         }
     }
 }
