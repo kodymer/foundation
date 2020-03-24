@@ -8,17 +8,16 @@ namespace Contoso.OnlineStore.Business
     public class Order
     {
         
-        private ILogger Logger { get; }
-
-        private string Number { get; set; }
-
+        private ILogger _logger { get; }
         private readonly List<OrderDetail> _details;
+
+        public string Number { get; set; }
 
         public Order(string number)
         {
             Check.NotNull(number, nameof(number));
 
-            Logger = NullLogger.Instance;
+            _logger = NullLogger.Instance;
             _details = new List<OrderDetail>();
         }
 
@@ -28,8 +27,8 @@ namespace Contoso.OnlineStore.Business
 
             _details.Add(orderDetail);
 
-            Logger.Write(string.Concat($"Order #{Number} - Detail: ", orderDetail.ToString()));
+            _logger.Write(string.Concat($"Order #{Number} - Detail: ", orderDetail.ToString()));
 
-        }        
+        }
     }
 }

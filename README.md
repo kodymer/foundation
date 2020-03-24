@@ -69,6 +69,75 @@ Hace cada clase responsable de una simple parte de la funcionalidad provista por
 5. Nos cuesta comprobar la funcionalidad de la clase.
 6. Cada vez que se escribe una nueva funcionalidad, la misma clase se ve afectada.
 
+```C#
+
+// Incorrecto
+public class Order
+{
+    private string Number { get; set; }
+
+    private readonly List<OrderDetail> _details;
+
+    public Order(string number)
+    {
+        Check.NotNull(number, nameof(number));
+
+        _details = new List<OrderDetail>();
+    }
+
+    public virtual void AddDetail(string description, int quantity, decimal price)
+    {
+        var orderDetail = OrderDetail.Create(description, quantity, price);
+
+        _details.Add(orderDetail);
+
+        Write($"Order #{Number} - Detail: ", orderDetail.ToString()));
+    }     
+
+    private void Write(string message)
+    {
+        Console.WriteLine(message);
+    }   
+}
+
+// Correcto
+public class Order
+{
+    private ILogger _logger;
+    private readonly List<OrderDetail> _details;
+
+    public string Number { get; set; }
+
+    public Order(string number)
+    {
+        Check.NotNull(number, nameof(number));
+
+        _logger = NullLogger.Instance;
+        _details = new List<OrderDetail>();
+    }
+
+    public virtual void AddDetail(string description, int quantity, decimal price)
+    {
+        var orderDetail = OrderDetail.Create(description, quantity, price);
+
+        _details.Add(orderDetail);
+
+        _logger.Write(string.Concat($"Order #{Number} - Detail: ", orderDetail.ToString()));
+    }        
+}
+
+public class Logger : ILogger
+{
+    public Logger() { }
+
+    public void Write(string message)
+    {
+        Console.WriteLine(message);
+    }
+}
+
+```
+
 ### Principio de abierto/cerrado (OCP)
 
 Una entidad de software debería estar abierta a la extensión pero cerrada a modificación.
@@ -76,11 +145,92 @@ Una entidad de software debería estar abierta a la extensión pero cerrada a mo
 ##### Consideraciones del principio
 
 1. Se suele resolver usando *polimorfismo*.
-2. Cuando se dice que una *Clase está abierta*, es porque **se puede extender**.
+2. Cuando se dice que una *clase está abierta*, es porque **se puede extender**.
 3. Implica agregar nuevas clases y métodos.
 4. Los nuevos desarrollos, no afectarán las clases existentes.
 5. Si una clase fue desarrollada, probada y revisada, constituye un riesgo modificarla nuevamente.
 6. El principio no impide resolver *bugs* en las súper clases. 
+
+```C#
+
+// Cerrado a la modificación y abierto a la extensión
+public class Product
+{ 
+    public string Code { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+
+    public Product(string code, string name, string description)
+    {
+        Check.NotNull(code, nameof(code));
+        Check.NotNull(name, nameof(name));
+
+        Code = code;
+        Name = name;
+        Description = description;
+    }
+
+    public override string ToString()
+    {
+        return $"{Code} {Name}";
+    }
+}
+
+// Contexto actual
+class Program
+{
+    static void Main(string[] args)
+    {
+        var product = new Product(
+            "000001", 
+            "50 Sombras de Gray", 
+            "Libro para adultos");
+
+        var order = new Order("123456");
+        order.AddDetail(product.ToString(), 1, 10.60M);
+    }
+}
+
+// Extensión de la clase Product
+public class BookProduct : Product
+{
+    public string Isbn { get; set; }
+    public string Author { get; set; }
+
+    public BookProduct(string code, string name, string description, string isbn, string author)
+        : base(code, name, description)
+    {
+        Check.NotNull(isbn, nameof(isbn));
+        Check.NotNull(author, nameof(author));
+
+        Isbn = isbn;
+        Author = author;
+    }
+
+    public override string ToString()
+    {
+        return $"{ base.ToString() } (Isbn: {Isbn} - Autor: {Author})";
+    }
+}
+
+// Contexto actualizado
+class Program
+{
+    static void Main(string[] args)
+    {
+        var product = new BookProduct(
+            "000001", 
+            "50 Sombras de Gray", 
+            "Libro para adultos", 
+            "823474", 
+            "Pedro Moreno");
+
+        var order = new Order("123456");
+        order.AddDetail(product.ToString(), 1, 10.60M); 
+    }
+}
+
+```
 
 ### Principio de sustitución de Liskov
 
@@ -98,6 +248,13 @@ Al sobre escribir un método, extienda el comportamiento base en lugar de reempl
 - Las invariantes de una superclase deben conservarse. Es decir, un objeto tiene sentido y ese sentido no puede ser trasgiversado en las subclases. Esta regla sobre los invariantes, es la más fácil de infringir porque es posible que malinterpretes o no te des cuenta de todos los invariantes de una clase compleja. Por lo tanto, la forma más segura de extender una clase es introducir nuevos campos y métodos, y no meterse con ningún miembro existente de la superclase.
 - Una subclase no debería cambiar los valores de los campos privados de la superclase.
 
+```C#
+
+
+
+
+```
+
 ### Principio de segregación por interfaz
 
 Los clientes no deberían verse obligados a depender de los métodos que no usan.
@@ -111,6 +268,10 @@ Al implementar una interfaz ves que uno o varios de los métodos no tienen senti
 - Debe dividir las interfaces "gordas" en otras más granulares y específicas, ya que el punto importante es que se implementen todos los métodos definidos por esas interfaces correctamente.
 - Una clase puede implementar varias interfaces, pero se recomienda que solo se implemente una.
 - Utilice las interfaces para desacoplar módulos entre si.
+
+```C#
+
+```
 
 ### Principio de inversion de dependencias
 
@@ -130,7 +291,9 @@ Las clases de alto nivel no deberían depender de las clases de bajo nivel. Ambo
 interfaces, en lugar de clases concretas de bajo nivel.
 - Las dependencias en las **clases de alto nivel**, se resuelven en los constructores ó propiedades.
 
+```C#
 
+```
 
 
 
