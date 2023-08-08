@@ -48,7 +48,7 @@ El principio KISS establece que la mayoría de sistemas funcionan mejor si se ma
 #### Consideraciones del principo
 - Mantenga sus métodos pequeños. Un método nunca debe tener más de 40-50 líneas.
 - Un método solo debe resolver un pequeño problema, no muchos casos de uso.
--  Si tiene muchas condiciones en el método, divídalas en métodos más pequeños.
+- Si tiene muchas condiciones en el método, divídalas en métodos más pequeños.
 
 
 ## SOLID
@@ -294,6 +294,21 @@ interfaces, en lugar de clases concretas de bajo nivel.
 ```C#
 
 ```
+
+## You Aren't Gonna Need It (YAGNI)
+
+Yagni originalmente es un acrónimo que significa *"No lo vas a necesitar"*.Es una declaración sobre algunas capacidades que presumimos como necesidades de software para el futuro y que no deberían construirse ahora porque *"no las necesitamos"*. En otras palabras, se refiere a potenciar el "diseño incremental o evolutivo" de un software.
+
+##### Consideraciones del Principio
+
+_YAGNI_ solo se aplica a las capacidades integradas en el software para admitir una presunta característica, no se aplica al esfuerzo por hacer que el software sea más fácil de modificar.
+
+## General Responsibility Assignment Software Patterns (GRASP)
+
+GRASP originalmente es un acrónimo que significa *"patrones de software de asignación de responsabilidad general"*. Proporciona un medio para resolver problemas organizacionales y ofrece una forma común de hablar sobre conceptos abstractos. El patrón de diseño establece responsabilidades para objetos y clases en el diseño de programas orientados a objetos.
+
+_GRASP_  clasifica los problemas y sus soluciones juntas como patrones. Con estos problemas y soluciones bien definidos, se pueden aplicar en otros casos similares. _GRASP_ asigna siete tipos de roles a clases y objetos con el fin de delinear claramente las responsabilidades. Estos roles son:
+
 
 
 

@@ -7,11 +7,15 @@ namespace Contoso.OnlineStore.Business
 {
     public class Order
     {
-        
         private ILogger _logger { get; }
-        private readonly List<OrderDetail> _details;
 
+        private readonly List<OrderDetail> _details;
+        private readonly List<OrderPayments> _payments;
+
+        public int Id { get; set; }
         public string Number { get; set; }
+        public int CustomerId { get; set; }
+        public OrderStatus Status { get; set; }
 
         public Order(string number)
         {

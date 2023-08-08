@@ -7,10 +7,9 @@ namespace Contoso.OnlineStore.Business
     public class Product
     { 
         public string Code { get; set; }
-
         public string Name { get; set; }
-
         public string Description { get; set; }
+        public int AvailableStock { get; set; }
 
         public Product(string code, string name, string description)
         {
@@ -20,6 +19,7 @@ namespace Contoso.OnlineStore.Business
             Code = code;
             Name = name;
             Description = description;
+            AvailableStock = 0;
         }
 
         public override string ToString()
